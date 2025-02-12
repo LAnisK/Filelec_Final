@@ -1,58 +1,43 @@
 <?php
-require_once("modele/modele.contact.php");
+require_once './modele/modele.contact.php';
 
-class Controleur {
-    private $unContactModele; // instance of the Modele class
+class ControleurContact {
+    private $modele;
 
     public function __construct() {
-        $this->unContactModele = new Modele();
+        $this->modele = new ModeleContact();
     }
 
-    public function handleFormSubmission() {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $nom = htmlspecialchars($_POST['nom']);
-            $prenom = htmlspecialchars($_POST['prenom']);
-            $email = htmlspecialchars($_POST['email']);
-            $telephone = htmlspecialchars($_POST['telephone']);
-            $adresse = htmlspecialchars($_POST['adresse']);
-            $code_postal = htmlspecialchars($_POST['code_postal']);
-            $ville = htmlspecialchars($_POST['ville']);
-            $message = htmlspecialchars($_POST['message']);
+    public function traiterFormulaire($nom, $prenom, $email, $telephone, $message) {
+        if (empty($nom) || empty($prenom) || empty($email) || empty($telephone) || empty($message)) {
+            return "❌ Tous les champs doivent être remplis.";
+        }
 
-            // Save to DB
-            if ($this->unContactModele->insertContact($nom, $prenom, $email, $telephone, $adresse, $code_postal, $ville, $message)) {
-                // Send confirmation email
-                $to = "filelec98@gmail.com";
-                $subject = "Nouveau message de contact";
-                $body = "Nom: $nom\nPrénom: $prenom\nEmail: $email\nTéléphone: $telephone\nAdresse: $adresse\nCode Postal: $code_postal\nVille: $ville\nMessage:\n$message";
-                $headers = "From: $email\r\nReply-To: $email";
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return "Adresse e-mail invalide.";
+        }
 
-                if (mail($to, $subject, $body, $headers)) {
-                    echo "<script>
-                        Swal.fire({
-                            title: 'Message envoyé!',
-                            text: 'Nous avons bien reçu votre message.',
-                            icon: 'success'
-                        }).then(() => { window.location.href = 'contact.php'; });
-                    </script>";
-                } else {
-                    echo "<script>
-                        Swal.fire({
-                            title: 'Erreur!',
-                            text: 'Une erreur s\'est produite lors de l\'envoi du message.',
-                            icon: 'error'
-                        });
-                    </script>";
-                }
+        if (!preg_match('/^[0-9]{10}$/', $telephone)) {
+            return " Numéro de téléphone invalide.";
+        }
+
+        // Enregistrer le message dans la base de données
+        $insertion = $this->modele->enregistrerMessage($nom, $prenom, $email, $telephone, $message);
+
+        if ($insertion) {
+            // Envoi d'e-mail
+            $destinataire = "adresse@outlook.com"; // Remplace par ton adresse
+            $sujet = "Nouveau message de contact de $nom $prenom";
+            $contenu = "Nom: $nom\nPrénom: $prenom\nEmail: $email\nTéléphone: $telephone\nMessage:\n$message";
+            $headers = "From: $email\r\nReply-To: $email\r\nContent-Type: text/plain; charset=UTF-8\r\n";
+
+            if (mail($destinataire, $sujet, $contenu, $headers)) {
+                header("Location: index.php?page=1");
             } else {
-                echo "<script>
-                    Swal.fire({
-                        title: 'Erreur!',
-                        text: 'Une erreur s\'est produite lors de l\'enregistrement des données.',
-                        icon: 'error'
-                    });
-                </script>";
+                return "⚠️ Message enregistré, mais e-mail non envoyé.";
             }
+        } else {
+            return "❌ Erreur lors de l'enregistrement du message.";
         }
     }
 }
