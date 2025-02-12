@@ -85,12 +85,7 @@
     }
 }
 
-/* Contenu principal */
-.content {
-    margin-left: 270px;
-    padding: 40px;
-    min-height: 100vh;
-}
+
 
 h1 {
     color: #333;
