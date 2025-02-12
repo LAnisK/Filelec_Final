@@ -14,8 +14,7 @@ nav {
     justify-content: space-between; /* Espace entre les éléments */
     align-items: center; /* Centrer verticalement */
     box-sizing: border-box;
-    
-   
+    z-index: 1000;
 }
 
 
@@ -96,8 +95,10 @@ nav {
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
-    object-fit: cover; /* Ajustement pour éviter toute déformation de l'image */
+    object-fit: cover;
+    margin-left: 40px; /* Ajoute un espacement de 40px vers la gauche */
 }
+
 
 .profile-logo:hover {
     transform: scale(1.1); /* Agrandissement au survol */

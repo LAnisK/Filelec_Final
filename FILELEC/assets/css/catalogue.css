@@ -1,93 +1,186 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+/* Reset de la marge et des polices de base */
 
+/* Style de la barre de navigation */
 .nav-cata {
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 100vh;
-    background-color: #007BFF;
-    color: white;
+    width: 100%; /* Pleine largeur */
+    background-color: #007BFF; /* Couleur de fond bleu */
+    padding: 10px 0;
+    z-index: 1000; /* Assure que la navbar est au-dessus du contenu */
     display: flex;
-    flex-direction: column;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    z-index: 1;
+    justify-content: center; /* Centrer les éléments */
 }
 
+/* Liste des éléments de la navigation */
 .nav-cata ul {
     padding: 0;
     margin: 0;
     list-style: none;
+    display: flex; /* Afficher les éléments de menu en ligne */
 }
 
-.nav-cata li {
-    margin-bottom: 10px;
+/* Style des éléments principaux */
+.nav-cata > ul > li {
+    position: relative; /* Pour les sous-menus */
+    margin: 0 15px; /* Espacement entre les éléments */
 }
 
+/* Style des liens */
 .nav-cata a {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-size: 18px;
+    padding: 10px 15px;
     display: block;
-    padding: 8px 0;
+    transition: background-color 0.3s ease;
 }
 
 .nav-cata a:hover {
-    text-decoration: underline;
+    background-color: #0056b3;
+    border-radius: 5px;
 }
 
+/* Sous-menus */
 .nav-cata ul ul {
-    padding-left: 20px;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%; /* Positionner le sous-menu sous l'élément parent */
+    background-color: #007BFF;
+    width: 200px;
+    flex-direction: column;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.nav-cata ul ul li {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
+/* Afficher le sous-menu au survol */
+.nav-cata li:hover > ul {
+    display: block;
 }
 
-.nav-cata ul ul a {
+/* Style des liens du sous-menu */
+.nav-cata ul ul li a {
     font-size: 16px;
+    padding: 10px;
 }
 
-.nav-cata li:hover > ul > li {
-    max-height: 50px;
+/* Responsive : ajustement pour les écrans plus petits */
+@media (max-width: 768px) {
+    .nav-cata {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-cata ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-cata ul ul {
+        position: static;
+        display: none;
+        width: 100%;
+    }
+
+    .nav-cata li:hover > ul {
+        display: block;
+    }
 }
 
-.nav-cata > ul > li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-
-.nav-cata > ul > li:first-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.nav-cata > ul > li:last-child {
-    border-bottom: none;
-}
-
-.nav-cata ul ul li {
-    border-bottom: none;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-}
-
-.nav-cata li:hover > ul > li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.nav-cata li:hover > ul > li:last-child {
-    border-bottom: none;
-}
-
+/* Contenu principal */
 .content {
-    margin-left: 240px;
-    padding: 20px;
+    margin-left: 270px;
+    padding: 40px;
+    min-height: 100vh;
 }
 
+h1 {
+    color: #333;
+    font-size: 28px;
+    text-align: center;
+}
+
+/* Articles */
+/* Articles */
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centre les articles horizontalement */
+    align-items: center; /* Centre les articles verticalement */
+    gap: 20px;
+    width: 100%; /* Prend toute la largeur */
+    max-width: 1200px; /* Limite la largeur maximale pour éviter que les articles s'étalent trop */
+    margin: 0 auto; /* Centre le conteneur */
+}
+
+/* Les articles restent inchangés */
+.article {
+    width: 300px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+/* Responsive : ajustement pour les petits écrans */
+@media (max-width: 768px) {
+    .articles {
+        flex-direction: column; /* Aligne les articles verticalement pour les petits écrans */
+        align-items: center;
+    }
+
+    .article {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+
+.price {
+    font-weight: bold;
+    color: #333;
+}
+
+.view-button {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.view-button:hover {
+    background-color: #218838;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-cata {
+        width: 200px;
+        padding: 15px;
+    }
+
+    .content {
+        margin-left: 220px;
+        padding: 20px;
+    }
+
+    .articles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .article {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}

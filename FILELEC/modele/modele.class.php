@@ -48,14 +48,14 @@
         }
         public function updateClient($tab){
             $requete ="update client set nom =:nom, prenom =:prenom, adresse = :adresse, email = :email, tel = :tel where id_client =:id_client ;";
-            $donnees= array(
+            $donnees= [
                 ":nom"=>$tab['nom'],
                 ":prenom"=>$tab['prenom'],
                 ":adresse"=>$tab['adresse'],
                 ":email"=>$tab['email'],
                 ":tel"=>$tab['telephone'],
                 ":id_client"=>$tab['id_client']
-            );
+            ];
             $exec = $this->unPdo->prepare($requete);
             $exec->execute($donnees);
 
