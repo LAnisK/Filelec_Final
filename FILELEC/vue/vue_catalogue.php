@@ -7,36 +7,29 @@
     <title>Catalogue</title>
 </head>
 <body>
+<br>
 
 <!-- Barre de navigation latérale -->
 <nav class="nav-cata">
     <ul>
-        <li><a href="#">Marques</a>
-            <ul>
-                <li><a href="#">Toyota</a></li>
-                <li><a href="#">Ford</a></li>
-                <li><a href="#">BMW</a></li>
-                <li><a href="#">Mercedes-Benz</a></li>
-                <li><a href="#">Audi</a></li>
-                <li><a href="#">Volkswagen</a></li>
-                <li><a href="#">Renault</a></li>
-                <li><a href="#">Peugeot</a></li>
-            </ul>
-        </li>
         <li><a href="#">Type de Pneus</a>
             <ul>
                 <li><a href="#">Pneus Hiver</a></li>
                 <li><a href="#">Pneus Été</a></li>
                 <li><a href="#">Pneus 4 Saisons</a></li>
-                <li><a href="#">Pneus Runflat</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Freins / Plaquette</a>
+            <ul>
+                <li><a href="#">Disque de Freins</a></li>
+                <li><a href="#">Plaquette de Freins</a></li>
             </ul>
         </li>
         <li><a href="#">Équipement</a>
             <ul>
-                <li><a href="#">Valves</a></li>
-                <li><a href="#">Jantes</a></li>
-                <li><a href="#">Kit de Réparation</a></li>
-                <li><a href="#">Compresseurs</a></li>
+                <li><a href="#">Huile / Liquide</a></li>
+                <li><a href="#">Outil & Équipement</a></li>
+                <li><a href="#">Produit & Entretien</a></li>  
             </ul>
         </li>
     </ul>

@@ -22,44 +22,39 @@
 
 /* Conteneur principal du formulaire */
 .contact-container {
-    background: white;
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
+
+    background: #007BFF;
+    padding: 80px; /* Réduction du padding pour diminuer la taille interne */
+    border-radius: 15px;
+    width: 50%;
+    max-width: 650px;
+    margin: 100px auto; /* Ajout de marge supérieure pour l'éloigner de la navbar */
 }
 
-/* Titre */
-.contact-container h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #007BFF;
-}
 
-/* Style des champs du formulaire */
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.form-group label {
-    font-size: 16px;
-    font-weight: bold;
-    color: #007BFF;
+/* Label styles */
+label {
     display: block;
-    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: 600px;
+
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 10px;
-    border: 2px solid #007BFF;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: 0.3s ease-in-out;
+
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #fff;
+    font-size: 1rem;
+    transition: border 0.3s ease-in-out;
+
 }
 
 .form-group input:focus,
@@ -87,11 +82,13 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 91, 187, 0.5);
 }
 
-/* Animation du fond */
-@keyframes moveBackground {
-    0% { background-position: 0 0; }
-    50% { background-position: 50px 50px; }
-    100% { background-position: 0 0; }
+
+/* Form hover effects */
+.contact-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(51, 0, 255, 0.2);
+
+
 }
 
 .background-3d {

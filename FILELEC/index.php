@@ -18,8 +18,6 @@ $unControleur = new Controleur();
 </head>
 
 <body>
-
-
     <center>
 
 
@@ -37,8 +35,10 @@ $unControleur = new Controleur();
                 $_SESSION['nom'] = $unUser['nom_client'];
                 $_SESSION['prenom'] = $unUser['prenom_client'];
                 $_SESSION['id_client'] = $unUser['id_client'];
-
-                header("Location: index.php?page=4"); // Redirige vers le tableau de bord
+                $_SESSION['tel'] = $unUser['tel_client'];
+                $_SESSION['adresse'] = $unUser['adresse_client'];
+                
+                header("Location: index.php"); // Redirige vers le tableau de bord
                 exit();
             } else {
                 $error = "Identifiants incorrects. Veuillez réessayer.";
@@ -171,6 +171,26 @@ $unControleur = new Controleur();
                 }
             }
             break;
+
+            if ($action == "updateProfil"){
+                // On récupère les données du formulaire envoyées via POST
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $tab = [
+                        'nom' => $_POST['nom'],
+                        'prenom' => $_POST['prenom'],
+                        'adresse' => $_POST['adresse'],
+                        'email' => $_POST['email'],
+                        'telephone' => $_POST['telephone'],
+                        'id_client' => $id_client, // L'ID du client est récupéré depuis la session
+                    ];
+    
+                    // Appel au contrôleur pour mettre à jour les informations du client
+                    $unControleur->updateClient($tab); 
+                    header("Location: index.php"); // Redirection après mise à jour
+                    exit(); // Assurez-vous que le script s'arrête après la redirection
+                }
+            }
+
         case 9:
             require_once("principal/catalogue.php");
             break;
