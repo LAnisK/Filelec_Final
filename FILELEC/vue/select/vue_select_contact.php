@@ -3,29 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Contact - Pièces Mécaniques</title>
     <link rel="stylesheet" href="assets/css/contact.css">
-    <link rel="stylesheet" href="assets/css/nav_bar.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <center>
-    <header>
-        <h1>Contactez-nous</h1>
-    </header>
-    <main class="contact-container">
-        <form action="../contact.php" method="POST" class="contact-form">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required>
-
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-
+    <div class="background-3d"></div>
+    <div class="contact-container">
+        <h2>Contactez-nous</h2>
+        <form id="contact-form" action="vue/insert/vue_insert_contact.php" method="POST">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Numéro de téléphone</label>
+                <input type="tel" id="telephone" name="telephone" required>
+         
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
             <button type="submit">Envoyer</button>
         </form>
-    </main>
-    </center>
+    </div>
+
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Message envoyé!",
+                text: "Nous avons bien reçu votre message et nous vous contacterons sous peu.",
+                icon: "success"
+            }).then(() => {
+                this.submit();
+            });
+        });
+    </script>
 </body>
 </html>

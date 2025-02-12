@@ -1,27 +1,27 @@
 <?php
-class Modele {
-    private $unPdo; // PDO for database connection
+class ModeleContact {
+    private $pdo;
 
     public function __construct() {
         try {
-            $serveur = "localhost";
-            $bdd = "filelec";
-            $user = "root";
-            $mdp = "";
-            // Create PDO instance
-            $this->unPdo = new PDO("mysql:host=".$serveur.";dbname=".$bdd, $user, $mdp);
-        } catch (PDOException $exp) {
-            echo "Erreur de connexion à la base de données.";
-            echo $exp->getMessage();
+            $this->pdo = new PDO("mysql:host=localhost;dbname=filelec;charset=utf8", "root", "");
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die(" Erreur de connexion à la base de données : " . $e->getMessage());
         }
     }
 
-    // Example function to insert data into DB
-    public function insertContact($nom, $prenom, $email, $telephone, $adresse, $code_postal, $ville, $message) {
-        $query = "INSERT INTO contacts (nom, prenom, email, telephone, adresse, code_postal, ville, message) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $this->unPdo->prepare($query);
-        return $stmt->execute([$nom, $prenom, $email, $telephone, $adresse, $code_postal, $ville, $message]);
+    public function enregistrerMessage($nom, $prenom, $email, $telephone, $message) {
+        $sql = "INSERT INTO contact (nom, prenom, email, telephone, message, date_envoi) 
+                VALUES (:nom, :prenom, :email, :telephone, :message, NOW())";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            ':nom' => $nom,
+            ':prenom' => $prenom,
+            ':email' => $email,
+            ':telephone' => $telephone,
+            ':message' => $message
+        ]);
     }
 }
 ?>
