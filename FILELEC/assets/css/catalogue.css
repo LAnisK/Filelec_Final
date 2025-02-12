@@ -1,37 +1,53 @@
-/* Reset de la marge et des polices de base */
-
-/* Style de la barre de navigation */
-.nav-cata {
-    width: 100%; /* Pleine largeur */
-    background-color: #007BFF; /* Couleur de fond bleu */
-    padding: 10px 0;
-    z-index: 1000; /* Assure que la navbar est au-dessus du contenu */
-    display: flex;
-    justify-content: center; /* Centrer les éléments */
+/* Réinitialisation des styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* Liste des éléments de la navigation */
+/* Style du corps */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* Barre de navigation latérale */
+.nav-cata {
+    width: 200px;
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    margin-top: 144px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Styles pour la liste de navigation */
 .nav-cata ul {
+    list-style: none;
     padding: 0;
     margin: 0;
-    list-style: none;
-    display: flex; /* Afficher les éléments de menu en ligne */
 }
 
-/* Style des éléments principaux */
+/* Éléments de la navigation */
 .nav-cata > ul > li {
-    position: relative; /* Pour les sous-menus */
-    margin: 0 15px; /* Espacement entre les éléments */
+    position: relative;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Style des liens */
+/* Liens de navigation */
 .nav-cata a {
-    color: rgb(0, 0, 0);
+    color: white;
     text-decoration: none;
     font-size: 18px;
-    padding: 10px 15px;
     display: block;
-    transition: background-color 0.3s ease;
+    padding: 8px 0;
 }
 
 .nav-cata a:hover {
@@ -44,7 +60,7 @@
     display: none;
     position: absolute;
     left: 0;
-    top: 100%; /* Positionner le sous-menu sous l'élément parent */
+    top: 100%;
     background-color: #007BFF;
     width: 200px;
     flex-direction: column;
@@ -56,104 +72,97 @@
     display: block;
 }
 
-/* Style des liens du sous-menu */
+/* Liens du sous-menu */
 .nav-cata ul ul li a {
     font-size: 16px;
     padding: 10px;
 }
 
-/* Responsive : ajustement pour les écrans plus petits */
-@media (max-width: 768px) {
-    .nav-cata {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .nav-cata ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .nav-cata ul ul {
-        position: static;
-        display: none;
-        width: 100%;
-    }
-
-    .nav-cata li:hover > ul {
-        display: block;
-    }
+/* Contenu principal */
+.content {
+    margin-left: 220px;
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #f9f9f9;
 }
 
-
-
-h1 {
-    color: #333;
-    font-size: 28px;
+/* Footer */
+footer {
+    margin-left: 220px;
+    padding: 20px;
+    background-color: #007BFF;
+    color: white;
     text-align: center;
 }
 
-/* Articles */
-/* Articles */
+/* Conteneur des articles */
 .articles {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centre les articles horizontalement */
-    align-items: center; /* Centre les articles verticalement */
+    justify-content: center;
     gap: 20px;
-    width: 100%; /* Prend toute la largeur */
-    max-width: 1200px; /* Limite la largeur maximale pour éviter que les articles s'étalent trop */
-    margin: 0 auto; /* Centre le conteneur */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Les articles restent inchangés */
+/* Carte d'article */
 .article {
     width: 300px;
-    padding: 15px;
     background-color: white;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
     text-align: center;
     transition: transform 0.3s ease;
 }
 
-/* Responsive : ajustement pour les petits écrans */
-@media (max-width: 768px) {
-    .articles {
-        flex-direction: column; /* Aligne les articles verticalement pour les petits écrans */
-        align-items: center;
-    }
-
-    .article {
-        width: 90%;
-        max-width: 400px;
-    }
+.article:hover {
+    transform: scale(1.03);
 }
 
+/* Image de l'article */
+.article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
 
+/* Titre et description */
+.article h2 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.article p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Prix */
 .price {
+    font-size: 18px;
+    color: #007BFF;
     font-weight: bold;
-    color: #333;
 }
 
+/* Bouton voir l'article */
 .view-button {
     display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
     background-color: #28a745;
     color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
     text-decoration: none;
+    border-radius: 5px;
     font-weight: bold;
-    margin-top: 10px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .view-button:hover {
     background-color: #218838;
 }
 
-/* Responsive */
+/* 🟢 Responsive pour mobiles */
 @media (max-width: 768px) {
     .nav-cata {
         width: 200px;

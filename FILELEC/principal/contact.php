@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -36,17 +37,26 @@
         </form>
     </div>
 
-    <script>
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            Swal.fire({
-                title: "Message envoyé!",
-                text: "Nous avons bien reçu votre message et nous vous contacterons sous peu.",
-                icon: "success"
-            }).then(() => {
-                this.submit();
-            });
-        });
-    </script>
-</body>
-</html>
+<?php
+
+
+
+require_once './controleur/controleur.contact.php';
+
+$messageRetour = "";
+
+// Si le formulaire est soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $controleurContact = new ControleurContact();
+    $messageRetour = $controleurContact->traiterFormulaire(
+        $_POST["nom"],
+        $_POST["prenom"],
+        $_POST["email"],
+        $_POST["telephone"],
+        $_POST["message"]
+    );
+}
+
+// Charger la vue
+require_once './vue/select/vue_select_contact.php';
+?>

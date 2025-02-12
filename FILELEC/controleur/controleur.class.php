@@ -31,7 +31,12 @@
             $this->unModele->deleteClient($id_client);
         }
 
-        public function updateClient($tab){
+
+       
+
+        
+        public function updateClient ($tab){
+
             $this->unModele->updateClient($tab);
         }
     }
