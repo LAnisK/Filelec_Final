@@ -128,3 +128,5 @@ CREATE TABLE admin (
     mdp_admin VARCHAR(25) NOT NULL,
     PRIMARY KEY (id_admin)
 );
+
+
