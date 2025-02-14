@@ -22,8 +22,20 @@
     <p> <h1>Description article: </h1></p>
     <p><?= nl2br(htmlspecialchars($article['description_article'])) ?></p>
     <br>
-    <a href="http://localhost/25JV/FILELEC%201/FILELEC/index.php?page=9" class="back-btn">Retour au catalogue</a>
+    <a href="../FILELEC/index.php?page=9" class="back-btn">Retour au catalogue</a>
+    <a href="../principal/catalogue.php" class="back-btn">Retour au catalogue</a>
+    <button type="submit" name="Ajouter">ajouter au panier</button>
+    <div>
+<label for="quantite">Quantité :</label>
+<select name="quantite" id="quantite">
+    <?php for ($i = 1; $i <= 10; $i++): ?>
+        <option value="<?= $i ?>"><?= $i ?></option>
+    <?php endfor; ?>
+</select>
 </div>
+</div>
+
+
 
 <script src="../assets/js/article.js"></script>
 </body>

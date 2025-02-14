@@ -1,5 +1,5 @@
 <?php
-require_once './modele/modele.catalogue.php'; // ✅ Vérifie que ce chemin est correct
+require_once __DIR__ . '/../modele/modele.catalogue.php'; // ✅ Vérifie que ce chemin est correct
 
 class ControleurCatalogue {
     private $unModele; // ✅ Déclare explicitement la propriété

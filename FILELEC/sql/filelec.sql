@@ -17,6 +17,7 @@ CREATE TABLE client (
     mdp_client VARCHAR(30) NOT NULL,
     date_creation_client DATE NOT NULL,
     url_client VARCHAR(255),  
+    type_client ENUM('Particulier', 'Professionnel') NOT NULL,
     PRIMARY KEY (id_client)
 );
 
@@ -100,6 +101,19 @@ CREATE TABLE intervention (
     FOREIGN KEY (id_technicien) REFERENCES technicien(id_technicien),
     FOREIGN KEY (id_commande) REFERENCES commande(id_commande)
 );
+
+CREATE TABLE panier (
+    id_panier INT(10) NOT NULL AUTO_INCREMENT,
+    id_client INT(5) NOT NULL, 
+    id_article INT(10) NOT NULL, 
+    quantite INT(5) NOT NULL DEFAULT 1,  
+    date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
+    PRIMARY KEY (id_panier),  
+    FOREIGN KEY (id_client) REFERENCES client(id_client) ON DELETE CASCADE,  
+    FOREIGN KEY (id_article) REFERENCES article(id_article) ON DELETE CASCADE  
+);
+
+
 
 
 
