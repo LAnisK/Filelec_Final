@@ -7,12 +7,16 @@ CREATE TABLE client (
     id_client INT(5) NOT NULL AUTO_INCREMENT, 
     nom_client VARCHAR(50) NOT NULL, 
     prenom_client VARCHAR(50) NOT NULL, 
-    adresse_client VARCHAR(50) NOT NULL, 
+    pays_client VARCHAR(50) NOT NULL,
+    ville_client VARCHAR(50) NOT NULL,
+    num_rue_client VARCHAR(50) NOT NULL,
+    nom_rue_client VARCHAR(50) NOT NULL, 
     email_client VARCHAR(50) NOT NULL UNIQUE, 
     tel_client CHAR(12) NOT NULL UNIQUE, 
+    type_client ENUM('Particulier', 'Professionnel') NOT NULL,
     mdp_client VARCHAR(30) NOT NULL,
     date_creation_client DATE NOT NULL,
-    url_client VARCHAR(255) NOT NULL,
+    url_client VARCHAR(255),  
     type_client ENUM('Particulier', 'Professionnel') NOT NULL,
     PRIMARY KEY (id_client)
 );
@@ -98,7 +102,6 @@ CREATE TABLE intervention (
     FOREIGN KEY (id_commande) REFERENCES commande(id_commande)
 );
 
-
 CREATE TABLE panier (
     id_panier INT(10) NOT NULL AUTO_INCREMENT,
     id_client INT(5) NOT NULL, 
@@ -109,6 +112,7 @@ CREATE TABLE panier (
     FOREIGN KEY (id_client) REFERENCES client(id_client) ON DELETE CASCADE,  
     FOREIGN KEY (id_article) REFERENCES article(id_article) ON DELETE CASCADE  
 );
+
 
 
 

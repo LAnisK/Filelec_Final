@@ -19,8 +19,6 @@ $unControleur = new Controleur();
 
 <body>
     <center>
-
-
         <?php
         // Gestion de la connexion
         if (isset($_POST['email']) && isset($_POST['mdp'])) {
@@ -36,7 +34,10 @@ $unControleur = new Controleur();
                 $_SESSION['prenom'] = $unUser['prenom_client'];
                 $_SESSION['id_client'] = $unUser['id_client'];
                 $_SESSION['tel'] = $unUser['tel_client'];
-                $_SESSION['adresse'] = $unUser['adresse_client'];
+                $_SESSION['pays'] = $unUser['pays_client'];
+                $_SESSION['ville'] = $unUser['ville_client'];
+                $_SESSION['numero'] = $unUser['num_rue_client'];
+                $_SESSION['rue'] = $unUser['nom_rue_client'];
                 
                 header("Location: index.php"); // Redirige vers le tableau de bord
                 exit();
@@ -90,6 +91,11 @@ $unControleur = new Controleur();
                             <a href="index.php?page=6">Déconnexion</a>
                         </div>
                     </div>
+                    <div class="panier-container-nav">
+                        <a href="index.php?page=10">
+                            <img src="img\image_logo\Panier.png.png" alt="Panier" class="panier-logo">
+                        </a>
+                    </div>
                 <?php else: ?>
                     <div class="link-container">
                         <a href="index.php?page=5">Connexion</a>
@@ -99,8 +105,6 @@ $unControleur = new Controleur();
                     </div>
                 <?php endif; ?>
             </div>
-            </div>
-            
     </center>
     </nav>
 
@@ -147,7 +151,11 @@ $unControleur = new Controleur();
                     'nom' => htmlspecialchars($_POST['nom']),
                     'email' => htmlspecialchars($_POST['email']),
                     'telephone' => htmlspecialchars($_POST['telephone']),
-                    'adresse' => htmlspecialchars($_POST['adresse']),
+                    'pays' => htmlspecialchars($_POST['pays']),
+                    'ville' => htmlspecialchars($_POST['ville']),
+                    'numero' => htmlspecialchars($_POST['numero']),
+                    'rue' => htmlspecialchars($_POST['rue']),
+                    'type' => htmlspecialchars($_POST['type']),
                     'mdp' => htmlspecialchars($_POST['mdp'])
                 ];
 
@@ -169,16 +177,19 @@ $unControleur = new Controleur();
                     unset($_SESSION['email']);
                     header("Location: index.php");
                 }
-            }
-            break;
+            
 
-            if ($action == "updateProfil"){
+            else if ($action == "updateProfil"){
+                $id_client = $_SESSION['id_client'];
                 // On récupère les données du formulaire envoyées via POST
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+               
                     $tab = [
                         'nom' => $_POST['nom'],
                         'prenom' => $_POST['prenom'],
-                        'adresse' => $_POST['adresse'],
+                        'pays' => $_POST['pays'],
+                        'ville' => $_POST['ville'],
+                        'numero' => $_POST['numero'],
+                        'rue' => $_POST['rue'],
                         'email' => $_POST['email'],
                         'telephone' => $_POST['telephone'],
                         'id_client' => $id_client, // L'ID du client est récupéré depuis la session
@@ -188,8 +199,10 @@ $unControleur = new Controleur();
                     $unControleur->updateClient($tab); 
                     header("Location: index.php"); // Redirection après mise à jour
                     exit(); // Assurez-vous que le script s'arrête après la redirection
-                }
+                
             }
+        }
+        break;
 
         case 9:
             require_once("principal/catalogue.php");

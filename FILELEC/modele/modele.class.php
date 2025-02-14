@@ -24,12 +24,16 @@
         }
 
         public function insertClient($tab){
-            $requete="insert into client values (null, :nom, :prenom, :adresse, :email, :telephone, :mdp, :date_creation) ;";
+            $requete="insert into client values (null, :nom, :prenom, :pays, :ville, :numero, :rue, :email, :telephone, :type, :mdp, :date_creation, null) ;";
             //correspondance entre les parametres PDO (:) et les parametres PHP($)
             $donnees = array(
                 ":nom" => $tab['nom'],
                 ":prenom" => $tab['prenom'],
-                ":adresse" => $tab['adresse'],
+                ":type" => $tab['type'],
+                ":pays" => $tab['pays'],
+                ":ville" => $tab['ville'],
+                ":numero" => $tab['numero'],
+                ":rue" => $tab['rue'],
                 ":email" => $tab['email'],
                 ":telephone" => $tab['telephone'],
                 ":mdp" => $tab['mdp'], // Hash du mot de passe
