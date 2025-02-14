@@ -11,5 +11,10 @@ class ControleurArticle {
     public function getArticle($id_article) {
         return $this->modele->getArticleById($id_article);
     }
+
+    public function ajouterAuPanier ($id_client, $id_article, $quantite){
+
+        $this->modele->ajouterAuPanier($id_client, $id_article, $quantite);
+    }
 }
 ?>

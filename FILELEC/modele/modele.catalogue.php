@@ -23,9 +23,9 @@ class CatalogueModele
     public function selectAllArticles()
     {
         $requete = "SELECT a.id_article, a.nom_article, a.description_article, a.prix_article, 
-                           i.url_article, c.nom_cat 
+                           i.url_image, c.nom_cat 
                     FROM article a
-                    JOIN image_article i ON a.id_image_article = i.id_image_article
+                    left JOIN image i ON a.id_article = i.id_article
                     JOIN categorie c ON a.id_cat = c.id_cat";
 
         $exec = $this->unPdo->prepare($requete);
