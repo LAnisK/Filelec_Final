@@ -12,7 +12,7 @@
 
         public function insertClient($tab) {
             if (!empty($tab['prenom']) && !empty($tab['nom']) && !empty($tab['email']) &&
-                !empty($tab['telephone']) && !empty($tab['adresse']) && !empty($tab['mdp'])) {
+                !empty($tab['telephone']) && !empty($tab['type']) && !empty($tab['pays']) && !empty($tab['ville']) && !empty($tab['numero']) && !empty($tab['rue']) && !empty($tab['mdp'])) {
                 // Appel au modèle pour l'insertion
                 $this->unModele->insertClient($tab);
             } else {

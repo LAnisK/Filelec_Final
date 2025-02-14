@@ -9,6 +9,7 @@
 <body>
 <br>
 
+
 <!-- Barre de navigation latérale -->
 <nav class="nav-cata">
     <ul>
