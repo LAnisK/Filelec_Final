@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label for="telephone">Numéro de téléphone</label>
                 <input type="tel" id="telephone" name="telephone" required>
-         
+            </div> <!-- Fermeture ajoutée ici -->
             <div class="form-group">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
@@ -38,13 +38,13 @@
 
     <script>
         document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Empêche la soumission immédiate
             Swal.fire({
                 title: "Message envoyé!",
                 text: "Nous avons bien reçu votre message et nous vous contacterons sous peu.",
                 icon: "success"
             }).then(() => {
-                this.submit();
+                this.submit(); // Soumet le formulaire après l'affichage du message
             });
         });
     </script>

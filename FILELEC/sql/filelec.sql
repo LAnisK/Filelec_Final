@@ -1,33 +1,29 @@
 DROP DATABASE IF EXISTS filelec;
 CREATE DATABASE filelec;
 USE filelec;
-
+ 
 -- Table Client
 CREATE TABLE client (
-    id_client INT(5) NOT NULL AUTO_INCREMENT, 
-    nom_client VARCHAR(50) NOT NULL, 
-    prenom_client VARCHAR(50) NOT NULL, 
-    pays_client VARCHAR(50) NOT NULL,
-    ville_client VARCHAR(50) NOT NULL,
-    num_rue_client VARCHAR(50) NOT NULL,
-    nom_rue_client VARCHAR(50) NOT NULL, 
-    email_client VARCHAR(50) NOT NULL UNIQUE, 
-    tel_client CHAR(12) NOT NULL UNIQUE, 
-    type_client ENUM('Particulier', 'Professionnel') NOT NULL,
+    id_client INT(5) NOT NULL AUTO_INCREMENT,
+    nom_client VARCHAR(50) NOT NULL,
+    prenom_client VARCHAR(50) NOT NULL,
+    adresse_client VARCHAR(50) NOT NULL,
+    email_client VARCHAR(50) NOT NULL UNIQUE,
+    tel_client CHAR(12) NOT NULL UNIQUE,
     mdp_client VARCHAR(30) NOT NULL,
     date_creation_client DATE NOT NULL,
-    url_client VARCHAR(255),  
+    url_client VARCHAR(255) NOT NULL,
     type_client ENUM('Particulier', 'Professionnel') NOT NULL,
     PRIMARY KEY (id_client)
 );
-
+ 
 -- Table Catégorie
 CREATE TABLE categorie (
     id_cat INT(10) NOT NULL AUTO_INCREMENT,
     nom_cat VARCHAR(25) NOT NULL,
     PRIMARY KEY (id_cat)
 );
-
+ 
 -- Table Article
 CREATE TABLE article (
     id_article INT(10) NOT NULL AUTO_INCREMENT,
@@ -39,29 +35,19 @@ CREATE TABLE article (
     PRIMARY KEY (id_article),
     FOREIGN KEY (id_cat) REFERENCES categorie(id_cat)
 );
-
+ 
 -- Table Image Article (corrigée)
 CREATE TABLE image (
     id_image INT(10) NOT NULL AUTO_INCREMENT,  
     nom_image VARCHAR(255) NOT NULL,                       
     url_image VARCHAR(255) NOT NULL,
-    id_article INT(10) NOT NULL, 
+    id_article INT(10) NOT NULL,
     PRIMARY KEY (id_image),
     FOREIGN KEY (id_article) REFERENCES article(id_article)
 );
-
--- Table Commande
-CREATE TABLE commande (
-    id_commande INT(10) NOT NULL AUTO_INCREMENT,
-    id_client INT(5) NOT NULL,
-    date_commande DATE NOT NULL,
-    statut ENUM('en preparation', 'en chemin', 'livré') NOT NULL,
-    montant_total FLOAT(10,2),
-    adresse_livraison VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id_commande),
-    FOREIGN KEY (id_client) REFERENCES client(id_client)
-);
-
+ 
+ 
+ 
 -- Table Ligne de Commande
 CREATE TABLE ligne (
     id_ligne INT(12) NOT NULL AUTO_INCREMENT,
@@ -69,12 +55,12 @@ CREATE TABLE ligne (
     quantite INT(5) NOT NULL,
     sous_total FLOAT(10,2),
     prix_unitaire FLOAT(10,2),
-    id_commande INT(10) NOT NULL,
-    PRIMARY KEY (id_ligne_cmd),
+    id_commande INT(10),
+    PRIMARY KEY (id_ligne),
     FOREIGN KEY (id_commande) REFERENCES commande(id_commande),
     FOREIGN KEY (id_article) REFERENCES article(id_article)
 );
-
+ 
 -- Table Technicien
 CREATE TABLE technicien (
     id_technicien INT(12) NOT NULL AUTO_INCREMENT,
@@ -86,35 +72,37 @@ CREATE TABLE technicien (
     role_technicien enum ("technicien", "admin", "user"),
     PRIMARY KEY (id_technicien)
 );
-
--- Table Intervention
-CREATE TABLE intervention (
-    id_intervention INT(12) NOT NULL AUTO_INCREMENT,
-    rapport text,
-    date_debut_inter DATE NOT NULL,
-    date_fin_inter DATE NOT NULL,
+ 
+ 
+-- Table Commande
+CREATE TABLE commande (
+    id_commande INT(10)  AUTO_INCREMENT,
     id_client INT(5) NOT NULL,
-    id_technicien INT(12) NOT NULL,
-    id_commande INT(10) NOT NULL,
-    PRIMARY KEY (id_intervention),
-    FOREIGN KEY (id_client) REFERENCES client(id_client),
-    FOREIGN KEY (id_technicien) REFERENCES technicien(id_technicien),
-    FOREIGN KEY (id_commande) REFERENCES commande(id_commande)
+    date_commande DATE NOT NULL,
+    statut ENUM('en preparation', 'en chemin', 'livré') NOT NULL,
+    montant_total FLOAT(10,2),
+    adresse_livraison VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id_commande),
+    FOREIGN KEY (id_client) REFERENCES client(id_client)
 );
-
+ 
 CREATE TABLE panier (
     id_panier INT(10) NOT NULL AUTO_INCREMENT,
-    id_client INT(5) NOT NULL, 
-    id_article INT(10) NOT NULL, 
+    id_article INT(10) NOT NULL,
     quantite INT(5) NOT NULL DEFAULT 1,  
-    date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
-    PRIMARY KEY (id_panier),  
-    FOREIGN KEY (id_client) REFERENCES client(id_client) ON DELETE CASCADE,  
+    date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_commande INT(10) ,
+    PRIMARY KEY (id_panier),   
     FOREIGN KEY (id_article) REFERENCES article(id_article) ON DELETE CASCADE  
+    FOREIGN KEY (id_commande) REFERENCES commande(id_commande) ON DELETE CASCADE  
 );
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+insert into article values (null,"pneu été 5 pouces", "Un pneu d’été de 5 pouces est conçu pour une adhérence optimale sur routes sèches et humides.", "167.95", "12", 1) ,
+(null,"pneu hiver", "Pneu été compact offrant une bonne tenue de route et une faible usure.", "169.99", "10", 1),  
+(null,"pneu toutes saison", "Pneu performant conçu pour une meilleure stabilité et adhérence sur route sèche.", "165.50", "15", 1),  
+(null,"pneu tout terrain", "Modèle résistant avec une structure optimisée pour le confort et la sécurité.", "172.00", "8", 1),  
+(null,"pneu noir" , "Idéal pour les longs trajets, ce pneu réduit la consommation de carburant.", "168.75", "14", 1),

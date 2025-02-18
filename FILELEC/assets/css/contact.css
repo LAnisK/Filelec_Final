@@ -1,97 +1,119 @@
-/* Réinitialisation des marges et styles de base */
+/* Réinitialisation */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
-/* Arrière-plan avec effet 3D */
-.background-3d {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, #a6dcef, #d7f3ff);
+/* Arrière-plan avec animation fluide */
+body {
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+    background-size: 400% 400%;
+    animation: gradientFlow 10s ease infinite;
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: -1;
+    align-items: center;
+    height: 100vh;
 }
 
-/* Conteneur principal du formulaire */
-.contact-container {
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-    background: #007BFF;
-    padding: 80px; /* Réduction du padding pour diminuer la taille interne */
+/* Conteneur du formulaire */
+.contact-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
     border-radius: 15px;
     width: 50%;
-    max-width: 650px;
-    margin: 100px auto; /* Ajout de marge supérieure pour l'éloigner de la navbar */
+    max-width: 600px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: 0.3s ease-in-out;
 }
 
-
-/* Label styles */
-label {
-    display: block;
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 8px;
-    font-weight: 600px;
-
+.contact-container:hover {
+    transform: translateY(-5px);
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-
-    padding: 15px;
+/* Titre */
+h2 {
+    color: #ffffff;
+    font-size: 26px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Champs du formulaire */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
     border-radius: 8px;
-    background-color: #ffffff;
-    color: #fff;
     font-size: 1rem;
-    transition: border 0.3s ease-in-out;
-
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
+    background: rgba(255, 255, 255, 0.2);
+    color: #E0E0E0; /* Couleur du texte plus claire */
+    transition: 0.3s;
     outline: none;
-    border-color: #0056b3;
-    box-shadow: 0 0 8px rgba(0, 91, 187, 0.5);
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
-/* Bouton d'envoi */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Effet néon au focus */
+input:focus, textarea:focus {
+    border: 2px solid #00bcd4;
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
+}
+
+/* Effet de survol */
+input:hover, textarea:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Placeholder */
+input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Bouton */
 button {
     width: 100%;
-    background: #007BFF;
+    padding: 15px;
+    background: linear-gradient(90deg, #00bcd4, #2196F3);
     color: white;
-    padding: 12px;
-    font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover {
-    background: #0056b3;
-    box-shadow: 0 0 10px rgba(0, 91, 187, 0.5);
-}
-
-
-/* Form hover effects */
-.contact-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(51, 0, 255, 0.2);
-
-
-}
-
-.background-3d {
-    background-size: 200% 200%;
-    animation: moveBackground 10s infinite linear;
+    background: linear-gradient(90deg, #2196F3, #00bcd4);
+    box-shadow: 0 5px 20px rgba(0, 188, 212, 0.6);
+    transform: scale(1.05);
 }

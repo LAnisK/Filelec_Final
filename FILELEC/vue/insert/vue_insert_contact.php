@@ -1,4 +1,11 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require_once 'C:\xampp\htdocs\FILELEC\vendor\autoload.php';
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = htmlspecialchars($_POST["nom"]);
     $prenom = htmlspecialchars($_POST["prenom"]);
@@ -6,27 +13,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telephone = htmlspecialchars($_POST["telephone"]);
     $message = htmlspecialchars($_POST["message"]);
 
-    // Adresse email où envoyer les messages
-    $destinataire = "theorouable07@outlook.com"; // 🔹 Remplace par ton adresse e-mail
-    $sujet = "Nouveau message de contact de $nom $prenom";
-    
-    // Construire le message
-    $contenu = "Nom: $nom\n";
-    $contenu .= "Prénom: $prenom\n";
-    $contenu .= "Email: $email\n";
-    $contenu .= "Téléphone: $telephone\n";
-    $contenu .= "Message:\n$message\n";
+    $mail = new PHPMailer(true);
 
-    // En-têtes de l'email
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    try {
+        // Configurer SMTP
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; // Serveur SMTP (ex: smtp.gmail.com, smtp.office365.com)
+        $mail->SMTPAuth = true;
+        $mail->Username = 'filelec98@gmail.com'; // Remplace par ton adresse Gmail
+        $mail->Password = 'fcls tpul aaei bqux'; // ⚠️ Active "Accès moins sécurisé" ou utilise un mot de passe d’application
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+        $mail->Port = 587;
 
-    // Envoyer l'email
-    if (mail($destinataire, $sujet, $contenu, $headers)) {
+        // Destinataires
+        $mail->setFrom($email, "$nom $prenom"); // Expéditeur
+        $mail->addAddress('filelec98@gmail.com', 'Destinataire'); // Destinataire
+
+        // Contenu
+        $mail->isHTML(false);
+        $mail->Subject = "📩 Nouveau message de contact";
+        $mail->Body = "Nom: $nom\nPrénom: $prenom\nEmail: $email\nTéléphone: $telephone\n\nMessage:\n$message";
+
+        // Envoyer l'e-mail
+        $mail->send();
         echo "✅ Message envoyé avec succès.";
-    } else {
-        echo "❌ Erreur lors de l'envoi du message.";
+    } catch (Exception $e) {
+        echo "❌ Erreur : {$mail->ErrorInfo}";
     }
 } else {
     echo "❌ Accès non autorisé.";
