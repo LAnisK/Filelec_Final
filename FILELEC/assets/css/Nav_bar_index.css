@@ -3,89 +3,78 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    padding-top: 60px; /* Pour éviter que le contenu soit caché sous la navbar fixe */
 }
 
 /* Style de la barre de navigation */
 nav {
-    background-color: #007bff; /* Bleu foncé pour le fond de la barre */
-    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    display: flex; /* Flexbox pour organiser les éléments */
-    justify-content: space-between; /* Espace entre les éléments */
-    align-items: center; /* Centrer verticalement */
+    background-color: #007bff; /* Bleu foncé */
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     box-sizing: border-box;
     z-index: 1000;
 }
 
-
-/* Style global du lien */
+/* Style global des liens */
 .nav-link {
     display: flex;
-    align-items: center; /* Aligne l'image et le texte verticalement */
-    text-decoration: none; /* Supprime le soulignement du lien */
-    color: inherit; /* Hérite de la couleur du texte parent */
-    margin: 10px 0; /* Ajoute de l'espace autour du lien */
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    margin: 10px 0;
 }
 
-/* Style de l'image */
+/* Style de l'image du logo */
 .nav-link img {
-    margin-right: 10px; /* Espace entre l'image et le texte */
+    margin-right: 10px;
 }
 
-/* Style du texte */
+/* Style du texte "Fillelec" */
 .filelec_nav {
-    font-size: 1.5rem; /* Taille du texte */
-    margin: 0; /* Retire l'espacement par défaut autour du titre */
-    font-weight: bold; /* Met en gras le titre */
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: bold;
+    color: white;
 }
 
-
-
-.nav-content img {
-    margin-bottom: 10px; /* Espace entre l'image et le titre */
-}
-
-
-/* Style des liens de navigation */
+/* Container des liens de navigation */
 .link-container {
     margin: 0 15px;
-    display: inline-block; /* Afficher les éléments sur une ligne */
+    display: inline-block;
 }
 
 .link-container a {
     text-decoration: none;
-    color: rgb(0, 0, 0); /* Changement : Liens noirs pour plus de contraste */
+    color: black; /* Texte noir pour le contraste */
     padding: 10px 20px;
     border-radius: 5px;
-    font-size: 18px; /* Réduction de la taille de la police */
+    font-size: 18px;
     transition: background-color 0.3s ease;
-    display: block; /* Le padding affecte toute la zone du lien */
+    display: block;
 }
 
 .link-container a:hover {
-    background-color: #0056b3; /* Couleur de survol ajustée pour correspondre au bleu principal */
-}
-
-/* Style pour le titre */
-.filelec_nav{
-    text-align: left; /* Aligner à gauche */
-    margin-left: 20px; /* Ajouter un espace depuis le mur gauche */
-    color: rgb(255, 255, 255);
-    font-size: 32px; /* Taille de police augmentée */
+    background-color: #0056b3; /* Couleur au survol */
 }
 
 /* Conteneur pour les éléments à droite */
 .right-container {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Pousse les éléments vers la droite */
+    margin-left: auto;
 }
 
 /* Conteneur du profil */
 .profile-container-nav {
-    display: flex; /* Flexbox pour organiser les éléments */
-    align-items: center; /* Centrer verticalement */
-    position: relative; /* Nécessaire pour positionner le menu déroulant */
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 /* Logo de profil */
@@ -96,20 +85,19 @@ nav {
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
     object-fit: cover;
-    margin-left: 40px; /* Ajoute un espacement de 40px vers la gauche */
+    margin-left: 40px;
 }
-
 
 .profile-logo:hover {
-    transform: scale(1.1); /* Agrandissement au survol */
+    transform: scale(1.1);
 }
 
-/* Menu déroulant */
+/* Menu déroulant du profil */
 .dropdown {
-    display: none; /* Masqué par défaut */
+    display: none;
     position: absolute;
-    top: 40px; /* Sous le logo */
-    right: 0; /* Ajustement pour aligner à droite */
+    top: 40px;
+    right: 0;
     background-color: #444;
     padding: 10px;
     border-radius: 5px;
@@ -121,7 +109,7 @@ nav {
     color: white;
     text-decoration: none;
     padding: 8px 12px;
-    display: block; /* Chaque lien occupe une ligne */
+    display: block;
     transition: background-color 0.2s ease;
 }
 
@@ -134,5 +122,35 @@ nav {
     display: block;
 }
 
+/* Style du panier */
+.panier-container-nav img {
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    cursor: pointer;
+}
 
+/* Pied de page */
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
 
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-content a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
